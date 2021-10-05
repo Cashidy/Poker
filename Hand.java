@@ -228,7 +228,7 @@ public class Hand {
                 pairCount++;
             }
         }
-        if (pairCount == 2) {
+        if (pairCount > 1) {
             toReturn++;
         }
         return toReturn;
