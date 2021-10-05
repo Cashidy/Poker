@@ -4,9 +4,7 @@ import java.util.LinkedList;
 public class CardSet {
     ArrayList<Card> cards = new ArrayList<Card>();
 
-    public CardSet() {
-
-    }
+    public CardSet() {}
     public CardSet(Card ... cardArray) {
         for (Card c: cardArray) {
             cards.add(c);
