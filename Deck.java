@@ -1,6 +1,4 @@
-import java.util.LinkedList;
-public class Deck {
-    LinkedList<Card> cards = new LinkedList<>();
+public class Deck extends CardSet {
     public Deck() {
         for (Card.Suit suit: Card.Suit.values()) {
             for (Card.Value value: Card.Value.values()) {
@@ -8,24 +6,11 @@ public class Deck {
             }
         }
     }
-    public void shuffle() {
-        LinkedList<Card> tempDeck = new LinkedList<>();
-        tempDeck.addAll(cards);
-        cards.clear();
-        int index;
-        while (!tempDeck.isEmpty()) {
-            index = (int) (Math.random() * tempDeck.size());
-            cards.add(tempDeck.get(index));
-            tempDeck.remove(index);
-        }
-    }
     public Card deal() {
-        Card toReturn = cards.getFirst();
-        cards.removeFirst();
-        return toReturn;
+        return cards.remove(cards.size() - 1);
     }
     public void burn() {
-        cards.removeFirst();
+        cards.remove(cards.size() - 1);
     }
     @Override
     public String toString() {
