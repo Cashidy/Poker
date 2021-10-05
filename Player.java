@@ -3,11 +3,9 @@ public class Player {
     private Card card2;
     private int strength;
 
-    public Player() {
+    public Player() {}
 
-    }
-
-    public Player(Card c1, Card2 c2) {
+    public Player(Card c1, Card c2) {
         card1 = c1;
         card2 = c2;
     }
@@ -28,12 +26,11 @@ public class Player {
     public int getStrength() {
         return strength;
     }
-    public void findStrength(Board b) {
+    public void findStrength(CardSet board) {
         strength = 0;
-        Board cards = new Board(b);
+        CardSet cards = new CardSet(board);
         cards.add(card1);
         cards.add(card2);
-        cards.sort();
         for (int i = 0; i < cards.getSize() - 4; i++) {
             for (int ii = i + 1; ii < cards.getSize() - 3; ii++) {
                 for (int iii = ii + 1; iii < cards.getSize() - 2; iii++) {
@@ -43,7 +40,7 @@ public class Player {
                                     cards.get(iv), cards.get(v));
                             if (h.getStrength() > strength) {
                                 strength = h.getStrength();
-                            };
+                            }
                         }
                     }
                 }
@@ -53,5 +50,4 @@ public class Player {
     public void printPocket() {
         System.out.println(card1 + " & " + card2);
     }
-    
 }
