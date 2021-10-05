@@ -152,7 +152,7 @@ public class Hand {
             strength += cards.get(0).value.ordinal();
             return;
         }
-        if (matches > 1) { //pair
+        if (matches > 0) { //pair
             type = handType.PAIR;
             strength += type.baseStrength();
 
@@ -219,7 +219,7 @@ public class Hand {
         int pairCount = 0;
         for (int i = 0; i < 3; i++) { //trips
             if (cards.get(i).value == cards.get(i + 2).value) {
-                toReturn += 5 - i;
+                toReturn += 4 - i;
             }
         }
         for (int i = 1; i < 5; i++) { //pairs
