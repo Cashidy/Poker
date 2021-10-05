@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.lang.IllegalArgumentException;
 
-public class Hand {
-    ArrayList<Card> cards = new ArrayList<Card>();
+public class Hand extends CardSet {
     int strength = 0;
     handType type;
 
@@ -25,43 +24,33 @@ public class Hand {
         }
     }
 
-    public Hand(ArrayList<Card> cards) {
+    public Hand(Card ... c) {
+        super(c);
         if (cards.size() == 5) {
-            this.cards = cards;
+            sort();
+        } else {
+            throw new IllegalArgumentException("Tried to create a hand with " +
+                    cards.size() + " cards. Hands must be made of 5 cards.");
+        }
+    }
+    public Hand(ArrayList<Card> c) {
+        super(c);
+        if (cards.size() == 5) {
             sort();
         } else {
             throw new IllegalArgumentException("Tried to create a hand with an array containing " +
                     cards.size() + " cards. Hands must be made of 5 cards.");
         }
     }
-
-    public Hand(Card c1, Card c2, Card c3, Card c4, Card c5) {
-        cards.add(c1);
-        cards.add(c2);
-        cards.add(c3);
-        cards.add(c4);
-        cards.add(c5);
-        sort();
-    }
-
-    public void sort() {
-        boolean flip = true;
-        while (flip) {
-            flip = false;
-            for (int i = 0; i < cards.size() - 1; i++) {
-                if (cards.get(i).value.compareTo(cards.get(i + 1).value) < 0) {
-                    swap(i, i + 1);
-                    flip = true;
-                }
-            }
+    public Hand(CardSet c) {
+        super(c);
+        if (cards.size() == 5) {
+            sort();
+        } else {
+            throw new IllegalArgumentException("Tried to create a hand with a CardSet containing " +
+                    cards.size() + " cards. Hands must be made of 5 cards.");
         }
     }
-    private void swap(int index1, int index2) {
-        Card temp = new Card(cards.get(index1).value, cards.get(index1).suit);
-        cards.set(index1, cards.get(index2));
-        cards.set(index2, temp);
-    }
-
 
     public int getStrength() {
         if (strength == 0) {
@@ -233,10 +222,4 @@ public class Hand {
         }
         return toReturn;
     }
-
-    @Override
-    public String toString() {
-        return cards.toString();
-    }
-
 }
