@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
 public class Poker {
-    static int numPlayers;
-    static ArrayList<Player> players = new ArrayList<>();
-    static Deck deck = new Deck();
-    static Board board = new Board();
     public static void main(String[] args) {
         try {
+            int numPlayers;
+            ArrayList<Player> players = new ArrayList<>();
+            Deck deck = new Deck();
+            CardSet board = new CardSet();
+
             numPlayers = Integer.parseInt(args[0]);
             for (int i = 0; i < numPlayers; i++) {
                 players.add(new Player());
