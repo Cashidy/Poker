@@ -7,8 +7,8 @@ public class Card {
         NINE, TEN, JACK, QUEEN, KING, ACE;
     }
 
-    Value value;
-    Suit suit;
+    private Value value;
+    private Suit suit;
 
     public Card(Value value, Suit suit) {
         this.value = value;
@@ -58,6 +58,20 @@ public class Card {
         return new Card(randomValue(), randomSuit());
     }
     
+    public static boolean equals(Card c1, Card c2) {
+        return c1.getValue() == c2.getValue() && c1.getSuit() == c2.getSuit();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o.getClass() == this.getClass()) {
+            Card c = (Card)o;
+            if (c.getValue() == this.value && c.getSuit() == this.suit) {
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return value + " of " + suit;

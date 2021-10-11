@@ -25,6 +25,10 @@ public class CardSet {
         cards.add(c);
     }
 
+    public void remove(Card c) {
+        cards.remove(c);
+    }
+
     public Card get(int index) {
         return cards.get(index);
     }
@@ -49,7 +53,7 @@ public class CardSet {
         while (flip) {
             flip = false;
             for (int i = 0; i < cards.size() - 1; i++) {
-                if (cards.get(i).value.compareTo(cards.get(i + 1).value) < 0) {
+                if (cards.get(i).getValue().compareTo(cards.get(i + 1).getValue()) < 0) {
                     swap(i, i + 1);
                     flip = true;
                 }
@@ -57,7 +61,7 @@ public class CardSet {
         }
     }
     private void swap(int index1, int index2) {
-        Card temp = new Card(cards.get(index1).value, cards.get(index1).suit);
+        Card temp = new Card(cards.get(index1).getValue(), cards.get(index1).getSuit());
         cards.set(index1, cards.get(index2));
         cards.set(index2, temp);
     }

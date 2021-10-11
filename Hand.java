@@ -65,154 +65,154 @@ public class Hand extends CardSet {
         
         if (suited && sequential) {
             type = handType.STRAIGHT_FLUSH;
-            strength += type.baseStrength() + cards.get(4).value.ordinal(); 
+            strength += type.baseStrength() + cards.get(4).getValue().ordinal(); 
             return; //low ace strength adjustment accounted for in checkStraight();
         }
         if (matches > 12) { //four of a kind
             type = handType.FOUR_OF_A_KIND;
             strength += type.baseStrength();
 
-            strength += cards.get(1).value.ordinal() * 13;
+            strength += cards.get(1).getValue().ordinal() * 13;
             if (matches == 13) {
-                strength += cards.get(4).value.ordinal();
+                strength += cards.get(4).getValue().ordinal();
                 return;
             }
-            strength += cards.get(0).value.ordinal();
+            strength += cards.get(0).getValue().ordinal();
             return;
         }
         if (matches > 10) { //full house       // 2-3 = 11, 3-2 = 12
             type = handType.FULL_HOUSE;
             strength += type.baseStrength();
 
-            strength += cards.get(2).value.ordinal() * 13;
+            strength += cards.get(2).getValue().ordinal() * 13;
             if (matches == 11) {
-                strength += cards.get(0).value.ordinal();
+                strength += cards.get(0).getValue().ordinal();
                 return;
             }
-            strength += cards.get(3).value.ordinal();
+            strength += cards.get(3).getValue().ordinal();
             return;
         }
         if (suited) { //flush
             type = handType.FLUSH;
             strength += type.baseStrength();
             for (int i = 0; i < 5; i++) {
-                strength += cards.get(i).value.ordinal() * Math.pow(13, 4 - i);
+                strength += cards.get(i).getValue().ordinal() * Math.pow(13, 4 - i);
             }
             return;
         }
         if (sequential) { //straight
             type = handType.STRAIGHT;
-            strength += type.baseStrength() + cards.get(4).value.ordinal();
+            strength += type.baseStrength() + cards.get(4).getValue().ordinal();
             return; //low ace strength adjustment accounted for in checkStraight();
         }
         if (matches > 7) { //three of a kind
             type = handType.THREE_OF_A_KIND;
             strength += type.baseStrength();
 
-            strength += cards.get(2).value.ordinal() * 169;
+            strength += cards.get(2).getValue().ordinal() * 169;
             if (matches == 8) {
-                strength += cards.get(3).value.ordinal() * 13;
-                strength += cards.get(4).value.ordinal();
+                strength += cards.get(3).getValue().ordinal() * 13;
+                strength += cards.get(4).getValue().ordinal();
                 return;
             }
             if (matches == 9) {
-                strength += cards.get(0).value.ordinal() * 13;
-                strength += cards.get(4).value.ordinal();
+                strength += cards.get(0).getValue().ordinal() * 13;
+                strength += cards.get(4).getValue().ordinal();
                 return;
             }
-            strength += cards.get(0).value.ordinal() * 13;
-            strength += cards.get(1).value.ordinal();
+            strength += cards.get(0).getValue().ordinal() * 13;
+            strength += cards.get(1).getValue().ordinal();
             return;
         }
         if (matches > 4) { //two pair
             type = handType.TWO_PAIR;
             strength += type.baseStrength();
 
-            strength += cards.get(1).value.ordinal() * 169;
-            strength += cards.get(3).value.ordinal() * 13;
+            strength += cards.get(1).getValue().ordinal() * 169;
+            strength += cards.get(3).getValue().ordinal() * 13;
             if (matches == 5) {
-                strength += cards.get(4).value.ordinal();
+                strength += cards.get(4).getValue().ordinal();
                 return;
             }
             if (matches == 6) {
-                strength += cards.get(2).value.ordinal();
+                strength += cards.get(2).getValue().ordinal();
                 return;
             }
-            strength += cards.get(0).value.ordinal();
+            strength += cards.get(0).getValue().ordinal();
             return;
         }
         if (matches > 0) { //pair
             type = handType.PAIR;
             strength += type.baseStrength();
 
-            strength += cards.get(matches).value.ordinal() * 2197;  
+            strength += cards.get(matches).getValue().ordinal() * 2197;  
             if (matches == 1) {  
-                strength += cards.get(2).value.ordinal() * 169;
-                strength += cards.get(3).value.ordinal() * 13;
-                strength += cards.get(4).value.ordinal();
+                strength += cards.get(2).getValue().ordinal() * 169;
+                strength += cards.get(3).getValue().ordinal() * 13;
+                strength += cards.get(4).getValue().ordinal();
                 return;
             }
             if (matches == 2) {
-                strength += cards.get(0).value.ordinal() * 169;
-                strength += cards.get(3).value.ordinal() * 13;
-                strength += cards.get(4).value.ordinal();
+                strength += cards.get(0).getValue().ordinal() * 169;
+                strength += cards.get(3).getValue().ordinal() * 13;
+                strength += cards.get(4).getValue().ordinal();
                 return;
             }
             if (matches == 3) {
-                strength += cards.get(0).value.ordinal() * 169;
-                strength += cards.get(1).value.ordinal() * 13;
-                strength += cards.get(4).value.ordinal();
+                strength += cards.get(0).getValue().ordinal() * 169;
+                strength += cards.get(1).getValue().ordinal() * 13;
+                strength += cards.get(4).getValue().ordinal();
                 return;
             }
-            strength += cards.get(0).value.ordinal() * 169;
-            strength += cards.get(1).value.ordinal() * 13;
-            strength += cards.get(2).value.ordinal();
+            strength += cards.get(0).getValue().ordinal() * 169;
+            strength += cards.get(1).getValue().ordinal() * 13;
+            strength += cards.get(2).getValue().ordinal();
             return;
         }
         type = handType.HIGH_CARD;
         for (int i = 0; i < 5; i++) {
-            strength += cards.get(i).value.ordinal() * Math.pow(13, 4 - i);
+            strength += cards.get(i).getValue().ordinal() * Math.pow(13, 4 - i);
         }
         
     }
     private boolean checkFlush() {
-        Card.Suit suit = cards.get(0).suit;
-        if (cards.get(1).suit == suit && cards.get(2).suit == suit &&
-                cards.get(3).suit == suit && cards.get(4).suit == suit) {
+        Card.Suit suit = cards.get(0).getSuit();
+        if (cards.get(1).getSuit() == suit && cards.get(2).getSuit() == suit &&
+                cards.get(3).getSuit() == suit && cards.get(4).getSuit() == suit) {
            return true;     
         }
         return false;
     }
     private boolean checkStraight() {
-        int value = cards.get(0).value.ordinal();
-        if (value == 12 && cards.get(1).value.ordinal() == 3 && cards.get(2).value.ordinal() == 2 &&
-                cards.get(3).value.ordinal() == 1 && cards.get(4).value.ordinal() == 0) { //low ace check
+        int value = cards.get(0).getValue().ordinal();
+        if (value == 12 && cards.get(1).getValue().ordinal() == 3 && cards.get(2).getValue().ordinal() == 2 &&
+                cards.get(3).getValue().ordinal() == 1 && cards.get(4).getValue().ordinal() == 0) { //low ace check
             strength--;
             return true;
         }
-        if (cards.get(1).value.ordinal() + 1 == value && cards.get(2).value.ordinal() + 2 == value &&
-                cards.get(3).value.ordinal() + 3 == value && cards.get(4).value.ordinal() + 4 == value) { //regular check
+        if (cards.get(1).getValue().ordinal() + 1 == value && cards.get(2).getValue().ordinal() + 2 == value &&
+                cards.get(3).getValue().ordinal() + 3 == value && cards.get(4).getValue().ordinal() + 4 == value) { //regular check
             return true;
         }
         return false;
     }
     private int checkMatches() {
-        if (cards.get(0).value == cards.get(3).value) {
+        if (cards.get(0).getValue() == cards.get(3).getValue()) {
             return 13;
         }                                 //four of a kinds
-        if (cards.get(1).value == cards.get(4).value) {
+        if (cards.get(1).getValue() == cards.get(4).getValue()) {
             return 14;
         }
 
         int toReturn = 0;
         int pairCount = 0;
         for (int i = 0; i < 3; i++) { //trips
-            if (cards.get(i).value == cards.get(i + 2).value) {
+            if (cards.get(i).getValue() == cards.get(i + 2).getValue()) {
                 toReturn += 4 - i;
             }
         }
         for (int i = 1; i < 5; i++) { //pairs
-            if (cards.get(i - 1).value == cards.get(i).value) {
+            if (cards.get(i - 1).getValue() == cards.get(i).getValue()) {
                 toReturn += i;
                 pairCount++;
             }
