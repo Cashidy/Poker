@@ -20,6 +20,38 @@ public class Card {
         this.suit = suit;
     }
 
+    public Card(String str) {
+        IllegalArgumentException wackStr = new IllegalArgumentException("Tried to create a card with an invalid String");
+        if (str.length() != 2) {
+            throw wackStr;
+        }
+        char v = str.charAt(0);
+        char s = str.charAt(1);
+        switch (v) {
+            case '2': value = Value.TWO; break;
+            case '3': value = Value.THREE; break;
+            case '4': value = Value.FOUR; break;
+            case '5': value = Value.FIVE; break;
+            case '6': value = Value.SIX; break;
+            case '7': value = Value.SEVEN; break;
+            case '8': value = Value.EIGHT; break;
+            case '9': value = Value.NINE; break;
+            case 'T': value = Value.TEN; break;
+            case 'J': value = Value.JACK; break;
+            case 'Q': value = Value.QUEEN; break;
+            case 'K': value = Value.KING; break;
+            case 'A': value = Value.ACE; break;
+            default: throw wackStr;
+        }
+        switch (s) {
+            case 'D': suit = Suit.DIAMONDS; break;
+            case 'C': suit = Suit.CLUBS; break;
+            case 'H': suit = Suit.HEARTS; break;
+            case 'S': suit = Suit.SPADES; break;
+            default: throw wackStr;
+        }
+    }
+
     public Value getValue() {
         return value;
     }

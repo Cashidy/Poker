@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.lang.IllegalArgumentException;
 
 public class Hand extends CardSet {
     int strength = 0;
@@ -54,7 +53,7 @@ public class Hand extends CardSet {
 
     public int getStrength() {
         if (strength == 0) {
-            this.findStrength();
+            findStrength();
         }
         return strength;
     }
@@ -177,11 +176,9 @@ public class Hand extends CardSet {
     }
     private boolean checkFlush() {
         Card.Suit suit = cards.get(0).getSuit();
-        if (cards.get(1).getSuit() == suit && cards.get(2).getSuit() == suit &&
-                cards.get(3).getSuit() == suit && cards.get(4).getSuit() == suit) {
-           return true;     
-        }
-        return false;
+        return cards.get(1).getSuit() == suit && cards.get(2).getSuit() == suit &&
+                cards.get(3).getSuit() == suit && cards.get(4).getSuit() == suit;
+           
     }
     private boolean checkStraight() {
         int value = cards.get(0).getValue().ordinal();
@@ -190,11 +187,8 @@ public class Hand extends CardSet {
             strength--;
             return true;
         }
-        if (cards.get(1).getValue().ordinal() + 1 == value && cards.get(2).getValue().ordinal() + 2 == value &&
-                cards.get(3).getValue().ordinal() + 3 == value && cards.get(4).getValue().ordinal() + 4 == value) { //regular check
-            return true;
-        }
-        return false;
+        return cards.get(1).getValue().ordinal() + 1 == value && cards.get(2).getValue().ordinal() + 2 == value &&
+                cards.get(3).getValue().ordinal() + 3 == value && cards.get(4).getValue().ordinal() + 4 == value; //regular check
     }
     private int checkMatches() {
         if (cards.get(0).getValue() == cards.get(3).getValue()) {

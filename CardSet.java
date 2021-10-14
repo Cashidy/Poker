@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.LinkedList;
 
 public class CardSet {
@@ -10,7 +11,7 @@ public class CardSet {
             cards.add(c);
         }
     }
-    public CardSet(ArrayList<Card> cardArray) {
+    public CardSet(List<Card> cardArray) {
         for (Card c: cardArray) {
             cards.add(c);
         }
@@ -27,6 +28,23 @@ public class CardSet {
 
     public void remove(Card c) {
         cards.remove(c);
+    }
+
+    public void remove(int index) {
+        cards.remove(index);
+    }
+
+    public Card pull(Card c) {
+        if (cards.remove(c)) {
+            return c;
+        }
+        return null;
+    }
+
+    public Card pull(int index) {
+        Card toReturn = cards.get(index);
+        cards.remove(index);
+        return toReturn;
     }
 
     public Card get(int index) {
@@ -49,13 +67,11 @@ public class CardSet {
     }
 
     public void sort() {
-        boolean flip = true;
-        while (flip) {
-            flip = false;
-            for (int i = 0; i < cards.size() - 1; i++) {
-                if (cards.get(i).getValue().compareTo(cards.get(i + 1).getValue()) < 0) {
-                    swap(i, i + 1);
-                    flip = true;
+        int cap = cards.size();
+        for (int i = 1; i < cap; i++) {
+            for (int j = i; j > 0; j--) {
+                if (cards.get(j).getValue().compareTo(cards.get(j - 1).getValue()) > 0) {
+                    swap(j, j - 1);
                 }
             }
         }
