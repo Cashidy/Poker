@@ -25,6 +25,7 @@ public class Card {
         if (str.length() != 2) {
             throw wackStr;
         }
+        str = str.toUpperCase();
         char v = str.charAt(0);
         char s = str.charAt(1);
         switch (v) {

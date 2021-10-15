@@ -5,18 +5,18 @@ public class Poker {
         try {
             //playRandomHand(args);
             //blindAllIn();
-            handVsHand();
+            handVsHand(args);
         } catch (Exception e) {
             System.err.print(e);
         }
     }
 
-    public static void handVsHand() {
+    public static void handVsHand(String[] args) {
         Deck deck = new Deck();
 
-        Player hero = new Player(deck.pull(new Card("AH")), deck.pull(new Card("KH")));
+        Player hero = new Player(deck.pull(new Card(args[0])), deck.pull(new Card(args[1])));
 
-        Player villain = new Player(deck.pull(new Card("QS")), deck.pull(new Card("QD")));
+        Player villain = new Player(deck.pull(new Card(args[2])), deck.pull(new Card(args[3])));
 
         int win = 0;
         int tie = 0;
