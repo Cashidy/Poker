@@ -14,9 +14,9 @@ public class Poker {
     public static void handVsHand() {
         Deck deck = new Deck();
 
-        Player hero = new Player(deck.pull(new Card("8H")), deck.pull(new Card("7H")));
+        Player hero = new Player(deck.pull(new Card("AH")), deck.pull(new Card("KH")));
 
-        Player villain = new Player(deck.pull(new Card("9S")), deck.pull(new Card("2D")));
+        Player villain = new Player(deck.pull(new Card("QS")), deck.pull(new Card("QD")));
 
         int win = 0;
         int tie = 0;

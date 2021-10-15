@@ -31,20 +31,32 @@ public class Player {
         CardSet cards = new CardSet(board);
         cards.add(card1);
         cards.add(card2);
-        for (int i = 0; i < cards.getSize() - 4; i++) {
-            for (int ii = i + 1; ii < cards.getSize() - 3; ii++) {
-                for (int iii = ii + 1; iii < cards.getSize() - 2; iii++) {
-                    for (int iv = iii + 1; iv < cards.getSize() - 1; iv++) {
-                        for (int v = iv + 1; v < cards.getSize(); v++) {
-                            Hand h = new Hand(cards.get(i), cards.get(ii), cards.get(iii),
-                                    cards.get(iv), cards.get(v));
+        cards.sort();
+        int cardsSize = cards.getSize();
+        Hand h = new Hand();
+        for (int i = 0; i < cardsSize - 4; i++) {
+            h.add(cards.get(i));
+            for (int ii = i + 1; ii < cardsSize - 3; ii++) {
+                h.add(cards.get(ii));
+                for (int iii = ii + 1; iii < cardsSize - 2; iii++) {
+                    h.add(cards.get(iii));
+                    for (int iv = iii + 1; iv < cardsSize - 1; iv++) {
+                        h.add(cards.get(iv));
+                        for (int v = iv + 1; v < cardsSize; v++) {
+                            h.add(cards.get(v));
+                            h.findStrength();
                             if (h.getStrength() > strength) {
                                 strength = h.getStrength();
                             }
+                            h.remove(4);
                         }
+                        h.remove(3);
                     }
+                    h.remove(2);
                 }
+                h.remove(1);
             }
+            h.remove(0);
         }
     }
     public void printPocket() {

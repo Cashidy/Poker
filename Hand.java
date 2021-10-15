@@ -23,41 +23,34 @@ public class Hand extends CardSet {
         }
     }
 
+    public Hand() {
+        super();
+    }
     public Hand(Card ... c) {
         super(c);
-        if (cards.size() == 5) {
-            sort();
-        } else {
-            throw new IllegalArgumentException("Tried to create a hand with " +
-                    cards.size() + " cards. Hands must be made of 5 cards.");
-        }
+        sort();
     }
     public Hand(ArrayList<Card> c) {
         super(c);
-        if (cards.size() == 5) {
-            sort();
-        } else {
-            throw new IllegalArgumentException("Tried to create a hand with an array containing " +
-                    cards.size() + " cards. Hands must be made of 5 cards.");
-        }
+        sort();
     }
     public Hand(CardSet c) {
         super(c);
-        if (cards.size() == 5) {
-            sort();
-        } else {
-            throw new IllegalArgumentException("Tried to create a hand with a CardSet containing " +
-                    cards.size() + " cards. Hands must be made of 5 cards.");
-        }
+        sort();
     }
 
     public int getStrength() {
-        if (strength == 0) {
-            findStrength();
-        }
         return strength;
     }
-    private void findStrength() {
+    
+    public void findStrength() {
+        if (cards.size() != 5) {
+            throw new IllegalArgumentException("Tried to find the strength of a poker hand with " +
+                    cards.size() + " cards. Hands must be made of 5 cards.");
+        }
+        sort();
+        strength = 0;
+
         boolean suited = checkFlush();
         boolean sequential = checkStraight();
         int matches = checkMatches();
